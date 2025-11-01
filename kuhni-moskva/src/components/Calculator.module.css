@@ -1,0 +1,146 @@
+.section {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background: url("/bg-calculator.jpg") center/cover no-repeat;
+  color: #fff;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.inner {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 64px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+}
+
+.sub {
+  text-align: center;
+  font-size: 15px;
+  color: #ddd;
+  max-width: 500px;
+}
+
+.card {
+  background: #fff;
+  color: #111;
+  border-radius: 12px;
+  padding: 30px 40px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+  width: 100%;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  color: #000000;
+  margin-top: 8px;
+}
+
+.input,
+.select {
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  font-size: 14px;
+}
+
+
+.range {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.result {
+  margin-top: 12px;
+  font-size: 18px;
+}
+
+.note {
+  font-size: 12px;
+  color: #777;
+  margin-top: 4px;
+}
+
+/* Contact block */
+.contact {
+  background: #fff;
+  color: #111;
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+  width: 100%;
+}
+
+.contactTitle {
+  font-weight: 700;
+  margin-bottom: 8px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgb(97, 97, 97);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.wa .icon {
+  color: #1DA851;
+}
+
+.tg .icon {
+  color: #229ED9;
+}
+
+
+
+
+
