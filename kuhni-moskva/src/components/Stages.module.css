@@ -1,0 +1,132 @@
+.section {
+  position: relative;
+  width: 100%;
+  padding: 70px 0 90px;
+  background: url("/background2.jpg") center/cover no-repeat; /* поменяй на свою */
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 5, 7, 0.8); /* 80% затемнение */
+  pointer-events: none;
+}
+
+.head {
+  position: relative;
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 32px;
+  padding: 0 16px;
+  color: #fff;
+}
+
+.title {
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 700;
+  margin: 0;
+}
+
+.sub {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+}
+
+/* line with circles */
+.line {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  padding: 0 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  z-index: 1;
+}
+
+.circleWrap {
+  position: relative;
+  scroll-snap-align: center;
+  margin-left: -30px;
+}
+
+.circleWrap:first-child {
+  margin-left: 0;
+}
+
+.circle {
+  width: 250px;
+  height: 250px;
+  border: 1.3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 9999px;
+  background: transparent;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* ВАЖНО: прижимаем к верху внутри круга, чтобы все тексты были на одной линии */
+  justify-content: flex-start;
+  padding: 60px 40px 24px;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.num {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
+}
+
+.stageTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  line-height: 1.15;
+  width: 150px;
+}
+
+.stageDesc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  width: 150px;
+}
+
+.plus {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  line-height: 1;
+  color: #fff;
+}
+
+
+@media (max-width: 1024px) {
+  .circle {
+    width: 240px;
+    height: 240px;
+    padding: 40px 22px 20px;
+  }
+  .circleWrap {
+    margin-left: -50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .line {
+    justify-content: flex-start;
+  }
+  .circleWrap {
+    margin-left: 0;
+    margin-right: 16px;
+  }
+  .circle {
+    width: 230px;
+    height: 230px;
+  }
+}

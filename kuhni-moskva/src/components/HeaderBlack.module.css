@@ -1,0 +1,104 @@
+.root {
+  position: fixed;
+  inset: 0 auto auto 0;
+  height: 64px;
+  width: 100%;
+  z-index: 70;
+  display: flex;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+  border-bottom: 1px solid transparent;
+}
+
+/* we will always apply this */
+.solid {
+  background: #fff;
+  color: var(--text);
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* keep for future, but not used now */
+.transparent {
+  background: transparent;
+  color: #fff;
+  border-color: transparent;
+}
+.hidden {
+  transform: translateY(-100%);
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+/* nav */
+.nav {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.link {
+  padding: 8px 10px;
+  border-radius: 10px;
+  opacity: .95;
+}
+.solid .link:hover {
+  background: #f3f4f6;
+}
+.active {
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* right-side actions */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btnGhostDark {
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: #fff;
+  padding: 3px 14px;
+  border-radius: 12px;
+}
+.btnGhostDark:hover {
+  background: #f3f4f6;
+}
+
+.btnPrimary {
+  padding: 3px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+.btnPrimary:hover {
+  background: var(--accent-600);
+}
+
+@media (max-width: 880px) {
+  .nav {
+    display: none;
+  }
+}

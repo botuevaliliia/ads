@@ -5,6 +5,8 @@ import Gallery from "../components/Gallery";
 import Advantages from "../components/Advantages";
 import Calculator from "../components/Calculator";
 import { setSEO } from "../utils/seo"; 
+import Header from "../components/Header";
+import Stages from "../components/Stages";
 
 export default function Home() {
   useEffect(() => {
@@ -17,6 +19,7 @@ export default function Home() {
 
   return (
     <>
+    <Header />
       <Hero />
 
       <section className="section">
@@ -58,6 +61,7 @@ export default function Home() {
           <Materials />
         </div>
       </section>
+      <Stages />
 
       <section className="section section">
         <div className="container">

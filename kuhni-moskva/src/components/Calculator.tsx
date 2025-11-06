@@ -1,80 +1,259 @@
 import { useState } from "react";
 import s from "./Calculator.module.css";
 
+type Material = "ПВХ" | "Пластик" | "Эмаль";
+type KitchenHeight = "<1500" | "<2440" | ">2440";
+type WardrobeHeight = "<2440" | ">2440";
+type Fitting = "Boyard" | "Hettich" | "Blum";
+
 export default function Calculator() {
-  const [length, setLength] = useState(3);
-  const [material, setMaterial] = useState("МДФ");
-  const [complexity, setComplexity] = useState(1);
+  const [tab, setTab] = useState<"kitchen" | "wardrobe">("kitchen");
+  const [length, setLength] = useState<number>(3);
+  const [material, setMaterial] = useState<Material>("ПВХ");
+  const [kitchenHeight, setKitchenHeight] = useState<KitchenHeight>("<1500");
+  const [wardrobeHeight, setWardrobeHeight] = useState<WardrobeHeight>("<2440");
+  const [fitting, setFitting] = useState<Fitting>("Boyard");
 
-  // basic formula for estimation
-  const basePrices: Record<string, number> = {
-    "МДФ": 50000,
-    "Шпон": 65000,
-    "Эмаль": 70000,
-    "Пластик": 55000,
-    "Акрил": 75000,
-    "Массив": 90000,
-    "Стекло": 80000,
+  const kitchenPrices: Record<Material, Record<KitchenHeight, number>> = {
+    ПВХ: {
+      "<1500": 45000,
+      "<2440": 70000,
+      ">2440": 85000,
+    },
+    Пластик: {
+      "<1500": 55000,
+      "<2440": 75000,
+      ">2440": 95000,
+    },
+    Эмаль: {
+      "<1500": 55000,
+      "<2440": 85000,
+      ">2440": 100000,
+    },
   };
-  const estimatePrice = (length: number, material: string, complexity: number) =>
-    Math.round((basePrices[material] || 50000) * length * (0.8 + complexity * 0.2));
 
-  const price = estimatePrice(length, material, complexity);
+  const wardrobePrices: Record<Material, Record<WardrobeHeight, number>> = {
+    ПВХ: {
+      "<2440": 65000,
+      ">2440": 85000,
+    },
+    Пластик: {
+      "<2440": 75000,
+      ">2440": 95000,
+    },
+    Эмаль: {
+      "<2440": 85000,
+      ">2440": 100000,
+    },
+  };
+
+  const fittingCoef: Record<Fitting, number> = {
+    Boyard: 1,
+    Hettich: 1.15,
+    Blum: 1.2,
+  };
+
+  const basePricePerMeter =
+    tab === "kitchen"
+      ? kitchenPrices[material][kitchenHeight]
+      : wardrobePrices[material][wardrobeHeight];
+
+  const pricePerMeterWithFitting = Math.round(
+    basePricePerMeter * fittingCoef[fitting]
+  );
+
+  const totalPrice = Math.round(
+    pricePerMeterWithFitting * (length > 0 ? length : 0)
+  );
+  const [lengthInput, setLengthInput] = useState<string>("3");
+
+  // helper for encoded text
+  const encode = (text: string) => encodeURIComponent(text);
+
+  // construct message
+  const message = `Здравствуйте! Хочу рассчитать проект ${
+    tab === "kitchen" ? "кухни" : "шкафа"
+  }.
+  Длина: ${length} п.м.
+  Материал: ${material}
+  Высота: ${
+    tab === "kitchen"
+      ? kitchenHeight === "<1500"
+        ? "до 1500 мм"
+        : kitchenHeight === "<2440"
+        ? "до 2440 мм"
+        : "выше 2440 мм"
+      : wardrobeHeight === "<2440"
+      ? "до 2440 мм"
+      : "выше 2440 мм"
+  }
+  Фурнитура: ${fitting}
+  Ориентировочная цена: ${totalPrice.toLocaleString("ru-RU")} ₽`;
+
+  const waLink = `https://wa.me/79958825191?text=${encode(message)}`;
+  const tgLink = `https://t.me/kuhnishkafi77?text=${encode(message)}`;
 
   return (
     <section className={s.section} id="calculator">
       <div className={s.overlay}></div>
       <div className={s.inner}>
-        <h2 className={s.title}>Калькулятор стоимости кухни</h2>
-        {/* <p className={s.sub}>
-          Укажите длину, материал и примерную сложность — получите ориентировочную цену.
-        </p> */}
+        <h2 className={s.title}>Калькулятор стоимости</h2>
+
+        {/* tabs */}
+        <div className={s.tabs}>
+          <button
+            type="button"
+            onClick={() => setTab("kitchen")}
+            className={`${s.tab} ${tab === "kitchen" ? s.activeTab : ""}`}
+          >
+            Кухни
+          </button>
+          <button
+            type="button"
+            onClick={() => setTab("wardrobe")}
+            className={`${s.tab} ${tab === "wardrobe" ? s.activeTab : ""}`}
+          >
+            Шкафы
+          </button>
+        </div>
 
         <div className={s.card}>
-          <label className={s.label}>Длина кухни (п.м.)</label>
+          {/* длина */}
+          <label className={s.label}>
+            Длина {tab === "kitchen" ? "кухни" : "шкафа"} (п.м.)
+          </label>
           <input
             className={s.input}
             type="number"
             min={0}
-            step="0.5"
-            value={length}
-            onChange={(e) => setLength(parseFloat(e.target.value))}
+            step={0.5}
+            value={lengthInput}
+            onChange={(e) => {
+              setLengthInput(e.target.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                const num = parseFloat(lengthInput);
+                if (Number.isNaN(num) || num < 0) {
+                  setLength(1);
+                  setLengthInput("1");
+                } else {
+                  setLength(num);
+                  setLengthInput(num.toString());
+                }
+              }
+            }}
+            onBlur={() => {
+              const num = parseFloat(lengthInput);
+              if (Number.isNaN(num) || num < 0) {
+                setLength(1);
+                setLengthInput("1");
+              } else {
+                setLength(num);
+                setLengthInput(num.toString());
+              }
+            }}
           />
 
-          <label className={s.label}>Материал</label>
-          <select
-            className={s.select}
-            value={material}
-            onChange={(e) => setMaterial(e.target.value)}
-          >
-            {["МДФ", "Шпон", "Эмаль", "Пластик", "Акрил", "Массив", "Стекло"].map((m) => (
-              <option key={m} value={m}>
+          {/* материал */}
+          <label className={s.label}>Материал фасадов</label>
+          <div className={s.optionGroup}>
+            {(["ПВХ", "Пластик", "Эмаль"] as Material[]).map((m) => (
+              <button
+                key={m}
+                type="button"
+                onClick={() => setMaterial(m)}
+                className={`${s.optionBtn} ${
+                  material === m ? s.optionBtnActive : ""
+                }`}
+              >
                 {m}
-              </option>
+              </button>
             ))}
-          </select>
+          </div>
 
-          <label className={s.label}>Сложность (1–3)</label>
-          <input
-            className={s.range}
-            type="range"
-            min={1}
-            max={3}
-            value={complexity}
-            onChange={(e) => setComplexity(parseInt(e.target.value))}
-          />
+          {/* высота */}
+          {tab === "kitchen" ? (
+            <>
+              <label className={s.label}>Высота кухни</label>
+              <div className={s.optionGroup}>
+                {[
+                  { val: "<1500", label: "Меньше 1.5 м" },
+                  { val: "<2440", label: "Меньше 2.5 м" },
+                  { val: ">2440", label: "Больше 2.5 м" },
+                ].map((h) => (
+                  <button
+                    key={h.val}
+                    type="button"
+                    onClick={() => setKitchenHeight(h.val as KitchenHeight)}
+                    className={`${s.optionBtn} ${
+                      kitchenHeight === h.val ? s.optionBtnActive : ""
+                    }`}
+                  >
+                    {h.label}
+                  </button>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <label className={s.label}>Высота шкафа</label>
+              <div className={s.optionGroup}>
+                {[
+                  { val: "<2440", label: "Меньше 2.5 м" },
+                  { val: ">2440", label: "Больше 2.5 м" },
+                ].map((h) => (
+                  <button
+                    key={h.val}
+                    type="button"
+                    onClick={() => setWardrobeHeight(h.val as WardrobeHeight)}
+                    className={`${s.optionBtn} ${
+                      wardrobeHeight === h.val ? s.optionBtnActive : ""
+                    }`}
+                  >
+                    {h.label}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
 
+          {/* фурнитура */}
+          <label className={s.label}>Фурнитура</label>
+          <div className={s.optionGroup}>
+            {(
+              [
+                { val: "Boyard", label: "Boyard NEO" },
+                { val: "Hettich", label: "Hettich" },
+                { val: "Blum", label: "Blum" },
+              ] as { val: Fitting; label: string }[]
+            ).map((f) => (
+              <button
+                key={f.val}
+                type="button"
+                onClick={() => setFitting(f.val)}
+                className={`${s.optionBtn} ${
+                  fitting === f.val ? s.optionBtnActive : ""
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+
+          {/* итоги */}
           <div className={s.result}>
-            Оценка: <b>{price.toLocaleString("ru-RU")} ₽</b>
+            Итоговая цена: <b>{totalPrice.toLocaleString("ru-RU")} ₽</b>
           </div>
           <div className={s.note}>
-            *Черновая оценка. Итог зависит от материалов и комплектации.
+            *Стоимость указана в базовой комплектации, свяжитесь с нами для
+            точного расчёта
           </div>
-        
+
           <div className={s.contactTitle}>Связаться со специалистом</div>
           <div className={s.actions}>
             <a
-              href="https://t.me/kuhnyashkaf"
+              href={tgLink}
               target="_blank"
               rel="noreferrer"
               className={`${s.btn} ${s.tg}`}
@@ -85,7 +264,7 @@ export default function Calculator() {
               Telegram
             </a>
             <a
-              href="https://wa.me/79958825191"
+              href={waLink}
               target="_blank"
               rel="noreferrer"
               className={`${s.btn} ${s.wa}`}
@@ -96,7 +275,7 @@ export default function Calculator() {
               WhatsApp
             </a>
           </div>
-          </div>
+        </div>
       </div>
     </section>
   );
