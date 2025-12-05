@@ -150,11 +150,42 @@
   place-items: center;
   font-size: 20px;
   cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.arrow:focus,
+.arrow:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.arrow:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 
 .arrowLeft { left: 10px; }
 .arrowRight { right: 10px; }
+
+.lightboxClose {
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.lightboxPrev,
+.lightboxNext {
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
 
 .body {
   padding: 0px 40px 30px;
@@ -244,6 +275,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 
@@ -266,6 +302,21 @@
   align-items: center;
   justify-content: center;
   transition: background 0.2s ease, transform 0.2s ease;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lightboxClose:focus,
+.lightboxClose:active,
+.lightboxPrev:focus,
+.lightboxPrev:active,
+.lightboxNext:focus,
+.lightboxNext:active {
+  outline: none;
+  box-shadow: none;
 }
 
 

@@ -157,10 +157,20 @@
   cursor: pointer;
   text-decoration: none;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .btnPrimary:hover {
   text-decoration: none;
+}
+
+.btnPrimary:focus,
+.btnPrimary:active {
+  outline: none;
+  box-shadow: none;
 }
 
 
@@ -174,10 +184,20 @@
   cursor: pointer;
   text-decoration: none;
   transition: background 0.15s ease;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .btnGhost:hover {
   text-decoration: none;
+}
+
+.btnGhost:focus,
+.btnGhost:active {
+  outline: none;
+  box-shadow: none;
 }
 
 
@@ -287,7 +307,7 @@
 
 .carouselArrow {
   border: none;
-  background:none;
+  background: none;
   color: #685c5c;
   border-radius: 50%;
   width: 48px;
@@ -296,6 +316,22 @@
   cursor: pointer;
   display: grid;
   place-items: center;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.carouselArrow:focus,
+.carouselArrow:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.carouselArrow:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 .carouselThumbs {
@@ -456,6 +492,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .lightboxPrev,
@@ -477,6 +518,21 @@
   align-items: center;
   justify-content: center;
   transition: background 0.2s ease, transform 0.2s ease;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lightboxClose:focus,
+.lightboxClose:active,
+.lightboxPrev:focus,
+.lightboxPrev:active,
+.lightboxNext:focus,
+.lightboxNext:active {
+  outline: none;
+  box-shadow: none;
 }
 
 
