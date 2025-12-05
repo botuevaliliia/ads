@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import HeaderBlack from "../components/HeaderBlack";
 import { setSEO } from "../utils/seo";
 import s from "./Reviews.module.css";
