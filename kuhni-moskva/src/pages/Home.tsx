@@ -39,15 +39,14 @@ export default function Home() {
         <div className="container">
           <h2>Выполненные проекты</h2>
           <p className="text-muted">
-            Галерея реальных работ. Нажмите на проект, чтобы посмотреть детали:
-            материалы, сроки и ориентировочную стоимость.
+            Галерея реальных работ.
           </p>
           <div style={{ marginTop: 12 }}>
             <Gallery limit={9} />
           </div>
           <div style={{ marginTop: 16 }}>
-            <a className="btn btn-outline" href="/catalog">
-              Смотреть все проекты
+            <a className="btn btn-outline" href="/reviews">
+              Смотреть отзывы
             </a>
           </div>
         </div>
@@ -74,7 +73,7 @@ export default function Home() {
             </div>
             <div style={{ display: "flex", gap: 10 }}>
               <a className="btn btn-primary" href="#contact">Оставить заявку</a>
-              <a className="btn btn-outline" href="/catalog">Портфолио</a>
+              <a className="btn btn-outline" href="/reviews">Портфолио</a>
             </div>
           </div>
         </div>

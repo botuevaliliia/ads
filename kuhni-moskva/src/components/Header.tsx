@@ -78,9 +78,9 @@ export default function Header() {
         </Link>
 
         <nav className={s.nav} aria-label="Главное меню">
-          <NavLink to="/catalog"  className={linkClass}>Каталог</NavLink>
-          <NavLink to="/about"    className={linkClass}>О компании</NavLink>
           <NavLink to="/reviews"  className={linkClass}>Отзывы</NavLink>
+          <NavLink to="/about"    className={linkClass}>О компании</NavLink>
+          <NavLink to="/catalog"  className={linkClass}>Каталог</NavLink>
         </nav>
 
         <div className={s.actions}>

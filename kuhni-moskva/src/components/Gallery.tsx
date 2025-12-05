@@ -22,9 +22,9 @@ export default function Gallery({ limit = 9 }: { limit?: number }) {
             <div className={s.media}>
               <img className={s.img} src={thumb} alt={p.title} loading="lazy" />
             </div>
-            <div className={s.caption}>
+            {/* <div className={s.caption}>
               {p.title}
-            </div>
+            </div> */}
           </Link>
         );
       })}

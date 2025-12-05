@@ -17,7 +17,7 @@
   position: relative;
   border: 1px solid var(--border);
   background: #fff;
-  box-shadow: var(--shadow);
+  /* box-shadow: var(--shadow); */
   overflow: hidden;
   transition: transform .18s ease, box-shadow .18s ease;
 }

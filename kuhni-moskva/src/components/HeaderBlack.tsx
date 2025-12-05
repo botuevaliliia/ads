@@ -36,14 +36,14 @@ export default function HeaderBlack() {
         </Link>
 
         <nav className={s.nav} aria-label="Главное меню">
-          <NavLink to="/catalog" className={linkClass}>
-            Каталог
+          <NavLink to="/reviews" className={linkClass}>
+            Отзывы
           </NavLink>
-           <NavLink to="/about" className={linkClass}>
+          <NavLink to="/about" className={linkClass}>
             О компании
           </NavLink>
-           <NavLink to="/reviews" className={linkClass}>
-            Отзывы
+          <NavLink to="/catalog" className={linkClass}>
+            Каталог
           </NavLink>
         </nav>
 
