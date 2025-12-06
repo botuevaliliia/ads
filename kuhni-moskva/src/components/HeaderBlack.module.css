@@ -96,8 +96,12 @@
   background: var(--accent-600);
 }
 
-@media (max-width: 880px) {
-  .nav {
-    display: none;
-  }
+@media (max-width: 720px) {
+  .inner { padding: 0 12px; }
+  .actions { display: none; }
+  .logo { height: 22px; }
+  .root { height: 56px; }
+  .brand { gap: 6px; }
+  .nav { gap: 10px; }
+  .link { padding: 8px 8px; }
 }

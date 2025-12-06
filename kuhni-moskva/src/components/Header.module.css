@@ -74,3 +74,25 @@
   padding: 3px 14px; border-radius: 12px;
 }
 .btnGhostDark:hover { background: #f3f4f6; }
+
+@media (max-width: 720px) {
+  .inner {
+    padding: 0 12px;
+  }
+  .actions {
+    display: none;
+  }
+  .logo {
+    height: 22px;
+  }
+  .brand { gap: 6px; }
+  .nav {
+    gap: 8px;
+  }
+  .link {
+    padding: 8px 8px;
+  }
+  .root {
+    height: 56px;
+  }
+}
