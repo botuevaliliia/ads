@@ -101,6 +101,12 @@
   grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
 }
 
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .card {
   background: #fff;
   border: 1px solid #e5e7eb;
@@ -337,31 +343,58 @@
   right: 18px;
 }
 
+@media (max-width: 600px) {
+  .grid {
+    gap: 12px;
+  }
+
+  .carousel {
+    padding: 12px 28px 0;
+  }
+
+  .arrow {
+    width: 32px;
+    height: 32px;
+  }
+}
+
 @media (max-width: 480px) {
   .title {
     font-size: 26px;
   }
 
   .grid {
-    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .carousel {
-    padding: 12px 34px 0;
+    padding: 10px 24px 0;
   }
 
   .arrow {
-    width: 36px;
-    height: 36px;
-    top: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
   }
 
   .arrowLeft {
-    left: 2px;
-    transform: translateY(-50%);
+    left: 0;
+    transform: translate(0%, -50%);
   }
   .arrowRight {
-    right: 2px;
-    transform: translateY(-50%);
+    right: 0;
+    transform: translate(0%, -50%);
+  }
+
+  .body {
+    padding: 0px 16px 20px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+  }
+
+  .quote {
+    font-size: 12px;
   }
 }
