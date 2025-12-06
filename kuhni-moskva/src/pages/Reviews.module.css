@@ -174,7 +174,7 @@
 
 .arrowLeft {
   left: 0;
-  transform: translate(0%, -50%);
+  transform: translate(50%, 0%);
 }
 .arrowRight {
   right: 0;
@@ -337,7 +337,7 @@
   right: 18px;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 480px) {
   .title {
     font-size: 26px;
   }
