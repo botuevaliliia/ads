@@ -241,10 +241,6 @@ export default function Catalog() {
           <div className={s.list}>
             {showcases.map((item) => (
               <article key={item.title} className={s.card}>
-                <div className={s.media}>
-                  <img src={item.image} alt={item.title} loading="lazy" />
-                </div>
-
                 <div className={s.text}>
                   <p className={s.series}>Коллекция</p>
                   <h3 className={s.cardTitle}>{item.title}</h3>
@@ -282,6 +278,10 @@ export default function Catalog() {
                       Обсудить детали
                     </a>
                   </div>
+                </div>
+
+                <div className={s.media}>
+                  <img src={item.image} alt={item.title} loading="lazy" />
                 </div>
               </article>
             ))}
