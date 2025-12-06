@@ -79,6 +79,14 @@
   padding: 30px 40px;
   box-shadow: 0 8px 20px rgba(0,0,0,.15);
   width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .card {
+    max-width: 100%;
+  }
 }
 
 .label {
