@@ -54,6 +54,13 @@ const reviews: Review[] = [
     name: "Марина Т.",
     images: ["/reviews/Reviewer_01_01.jpg", "/reviews/Reviewer_01_02.jpg", "/reviews/Reviewer_01_03.jpg"],
   },
+  {
+    title: "Шкаф в прихожую",
+    quote:
+      "Заказывали шкаф в прихожую, выполнили в срок.  Всем довольна 👌🏻 Рекомендую 👍🏻",
+    name: "Павел М.",
+    images: ["/reviews/Reviewer_07_01.jpg", "/reviews/Reviewer_07_02.jpg"],
+  },
 ];
 
 export default function Reviews() {
