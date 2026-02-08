@@ -1,0 +1,29 @@
+name: Deploy HTML to Yandex Cloud
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install Yandex CLI
+        run: |
+          curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+          export PATH=$PATH:$HOME/bin
+
+      - name: Configure Yandex CLI
+        run: |
+          yc config set access-key-id ${{ secrets.YC_ACCESS_KEY_ID }}
+          yc config set secret-access-key ${{ secrets.YC_SECRET_ACCESS_KEY }}
+          yc config set cloud-id ${{ secrets.YC_CLOUD_ID }}
+          yc config set folder-id ${{ secrets.YC_FOLDER_ID }}
+
+      - name: Upload files to bucket
+        run: |
+          yc storage cp --recursive ./ ads-mebel
